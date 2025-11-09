@@ -98,6 +98,7 @@ export type Database = {
           id: string
           status: string | null
           total_amount: number
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -107,6 +108,7 @@ export type Database = {
           id?: string
           status?: string | null
           total_amount: number
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -116,6 +118,34 @@ export type Database = {
           id?: string
           status?: string | null
           total_amount?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
