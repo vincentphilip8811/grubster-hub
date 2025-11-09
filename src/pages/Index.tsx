@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 import MenuCard from "@/components/MenuCard";
 import Cart, { CartItem } from "@/components/Cart";
 import CheckoutDialog from "@/components/CheckoutDialog";
+import Navbar from "@/components/Navbar";
 import { Utensils } from "lucide-react";
 import heroImage from "@/assets/hero-food.jpg";
+import { User, Session } from "@supabase/supabase-js";
 
 interface MenuItem {
   id: string;
@@ -18,13 +21,30 @@ interface MenuItem {
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+      }
+    );
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+    });
+
     fetchMenuItems();
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const fetchMenuItems = async () => {
@@ -93,8 +113,19 @@ const Index = () => {
     return acc;
   }, {} as Record<string, MenuItem[]>);
 
+  const handleCheckout = () => {
+    if (!user) {
+      toast.error("Please sign in to place an order");
+      navigate("/auth");
+      return;
+    }
+    setCheckoutOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
+      <Navbar />
+      
       {/* Hero Section */}
       <header className="relative h-[400px] overflow-hidden">
         <div 
@@ -154,7 +185,7 @@ const Index = () => {
               items={cartItems}
               onUpdateQuantity={updateQuantity}
               onRemoveItem={removeItem}
-              onCheckout={() => setCheckoutOpen(true)}
+              onCheckout={handleCheckout}
             />
           </div>
         </div>

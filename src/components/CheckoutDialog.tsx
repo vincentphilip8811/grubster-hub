@@ -27,10 +27,13 @@ const CheckoutDialog = ({ open, onOpenChange, cartItems, total, onOrderComplete 
     setLoading(true);
 
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
       // Create order
       const { data: order, error: orderError } = await supabase
         .from("orders")
         .insert({
+          user_id: session?.user.id,
           customer_name: name,
           customer_phone: phone,
           customer_address: address,
