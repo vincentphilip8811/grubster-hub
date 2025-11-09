@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import MenuCard from "@/components/MenuCard";
 import Cart, { CartItem } from "@/components/Cart";
 import CheckoutDialog from "@/components/CheckoutDialog";
+import PaymentDialog from "@/components/PaymentDialog";
 import Navbar from "@/components/Navbar";
 import { Utensils } from "lucide-react";
 import heroImage from "@/assets/hero-food.jpg";
@@ -103,6 +104,10 @@ const Index = () => {
     setCartItems([]);
   };
 
+  const [paymentOpen, setPaymentOpen] = useState(false);
+  const [paymentOrderId, setPaymentOrderId] = useState<string | null>(null);
+  const [paymentAmount, setPaymentAmount] = useState<number>(0);
+
   const cartTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const groupedMenuItems = menuItems.reduce((acc, item) => {
@@ -198,6 +203,22 @@ const Index = () => {
         cartItems={cartItems}
         total={cartTotal}
         onOrderComplete={handleOrderComplete}
+        onPaymentRequired={(orderId, amount) => {
+          setPaymentOrderId(orderId);
+          setPaymentAmount(amount);
+          setPaymentOpen(true);
+        }}
+      />
+
+      <PaymentDialog
+        open={paymentOpen}
+        onOpenChange={setPaymentOpen}
+        orderId={paymentOrderId}
+        amount={paymentAmount}
+        onPaymentComplete={() => {
+          // mark order complete in UI
+          handleOrderComplete();
+        }}
       />
     </div>
   );

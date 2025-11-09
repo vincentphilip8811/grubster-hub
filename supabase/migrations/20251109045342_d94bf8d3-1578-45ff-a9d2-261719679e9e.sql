@@ -1,4 +1,4 @@
--- Create profiles table
+-- Create profiles tableTraditional Indian ice cream
 CREATE TABLE public.profiles (
   id UUID NOT NULL REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
   full_name TEXT,

@@ -14,9 +14,10 @@ interface CheckoutDialogProps {
   cartItems: CartItem[];
   total: number;
   onOrderComplete: () => void;
+  onPaymentRequired: (orderId: string, amount: number) => void;
 }
 
-const CheckoutDialog = ({ open, onOpenChange, cartItems, total, onOrderComplete }: CheckoutDialogProps) => {
+const CheckoutDialog = ({ open, onOpenChange, cartItems, total, onOrderComplete, onPaymentRequired }: CheckoutDialogProps) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
@@ -60,11 +61,12 @@ const CheckoutDialog = ({ open, onOpenChange, cartItems, total, onOrderComplete 
       if (itemsError) throw itemsError;
 
       toast.success("Order placed successfully!", {
-        description: `Your order #${order.id.slice(0, 8)} has been received.`
+        description: `Your order #${order.id.slice(0, 8)} has been created. Proceed to payment.`
       });
 
-      onOrderComplete();
+      // Close checkout and open payment step in parent
       onOpenChange(false);
+      onPaymentRequired(order.id, total);
       setName("");
       setPhone("");
       setAddress("");

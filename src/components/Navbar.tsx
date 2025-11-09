@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-foreground hover:text-primary transition-colors">
             <Utensils className="h-8 w-8 text-primary" />
-            <span>FoodHub</span>
+            <span>FIRE CRAFT</span>
           </Link>
 
           <div className="flex items-center gap-4">
