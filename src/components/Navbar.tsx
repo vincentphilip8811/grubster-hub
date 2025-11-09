@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Utensils, User, ShoppingBag, LogOut } from "lucide-react";
+import { Utensils, User, ShoppingBag, LogOut, Home, MessageSquare, Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { User as SupabaseUser } from "@supabase/supabase-js";
@@ -37,24 +37,43 @@ const Navbar = () => {
             <span>FIRE CRAFT</span>
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
+            <Link to="/">
+              <Button variant="ghost" className="gap-2">
+                <Home className="h-4 w-4" />
+                <span className="hidden md:inline">Home</span>
+              </Button>
+            </Link>
+            <Link to="/#menu">
+              <Button variant="ghost" className="gap-2">
+                <Menu className="h-4 w-4" />
+                <span className="hidden md:inline">Menu</span>
+              </Button>
+            </Link>
+            <Link to="/feedback">
+              <Button variant="ghost" className="gap-2">
+                <MessageSquare className="h-4 w-4" />
+                <span className="hidden md:inline">Feedback</span>
+              </Button>
+            </Link>
+            
             {user ? (
               <>
                 <Link to="/dashboard">
                   <Button variant="ghost" className="gap-2">
                     <ShoppingBag className="h-4 w-4" />
-                    My Orders
+                    <span className="hidden md:inline">My Orders</span>
                   </Button>
                 </Link>
                 <Link to="/profile">
                   <Button variant="ghost" className="gap-2">
                     <User className="h-4 w-4" />
-                    Profile
+                    <span className="hidden md:inline">Profile</span>
                   </Button>
                 </Link>
                 <Button onClick={handleSignOut} variant="outline" className="gap-2">
                   <LogOut className="h-4 w-4" />
-                  Sign Out
+                  <span className="hidden md:inline">Sign Out</span>
                 </Button>
               </>
             ) : (

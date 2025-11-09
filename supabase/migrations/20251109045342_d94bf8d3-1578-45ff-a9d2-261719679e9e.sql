@@ -91,4 +91,17 @@ INSERT INTO public.menu_items (name, description, price, category, image_url) VA
 ('Raita', 'Yogurt with cucumber and spices', 40.00, 'Sides', 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=400'),
 ('Mango Lassi', 'Sweet yogurt drink with mango', 50.00, 'Beverages', 'https://images.unsplash.com/photo-1561043433-aaf687c4cf04?auto=format&fit=crop&w=400'),
 ('Ras Malai', 'Soft cheese dumplings in sweet milk', 60.00, 'Desserts', 'https://images.unsplash.com/photo-1631177146820-a40b8f936b18?auto=format&fit=crop&w=400'),
-('Kulfi', 'Traditional Indian ice cream', 45.00, 'Desserts', 'https://images.unsplash.com/photo-1582716401301-b2407dc7563d?auto=format&fit=crop&w=400');
+('Kulfi', 'Traditional Indian ice cream', 45.00, 'Desserts', 'https://images.unsplash.com/photo-1582716401301-b2407dc7563d?auto=format&fit=crop&w=400'),
+('Chicken Biryani', 'Aromatic rice with tender chicken pieces', 200.00, 'Main Course', 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400'),
+('Palak Paneer', 'Cottage cheese in spinach gravy', 150.00, 'Main Course', 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400'),
+('Chole Bhature', 'Chickpeas curry with fried bread', 120.00, 'Main Course', 'https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=400'),
+('Masala Dosa', 'Crispy rice crepe with potato filling', 90.00, 'Breakfast', 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=400'),
+('Idli Sambar', 'Steamed rice cakes with lentil soup', 70.00, 'Breakfast', 'https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=400'),
+('Pav Bhaji', 'Mixed vegetable curry with bread rolls', 100.00, 'Snacks', 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=400'),
+('Vada Pav', 'Spiced potato fritter in bread bun', 40.00, 'Snacks', 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=400'),
+('Gulab Jamun', 'Sweet milk dumplings in sugar syrup', 50.00, 'Desserts', 'https://images.unsplash.com/photo-1589119908995-c6c1f8b9ccc4?auto=format&fit=crop&w=400'),
+('Chai', 'Indian spiced tea', 20.00, 'Beverages', 'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?auto=format&fit=crop&w=400'),
+('Lassi', 'Sweet yogurt drink', 40.00, 'Beverages', 'https://images.unsplash.com/photo-1564385494738-009769e803e4?auto=format&fit=crop&w=400'),
+('Aloo Paratha', 'Stuffed potato flatbread', 60.00, 'Breads', 'https://images.unsplash.com/photo-1619970499969-b078b7e34aa5?auto=format&fit=crop&w=400'),
+('Butter Naan', 'Leavened bread with butter', 30.00, 'Breads', 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400'),
+('Paneer Butter Masala', 'Cottage cheese in rich tomato gravy', 170.00, 'Main Course', 'https://images.unsplash.com/photo-1631452180539-96aca7d48617?auto=format&fit=crop&w=400');

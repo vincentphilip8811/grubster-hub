@@ -7,6 +7,7 @@ import Cart, { CartItem } from "@/components/Cart";
 import CheckoutDialog from "@/components/CheckoutDialog";
 import PaymentDialog from "@/components/PaymentDialog";
 import Navbar from "@/components/Navbar";
+import SearchBar from "@/components/SearchBar";
 import { Utensils } from "lucide-react";
 import heroImage from "@/assets/hero-food.jpg";
 import { User, Session } from "@supabase/supabase-js";
@@ -29,6 +30,7 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -110,7 +112,13 @@ const Index = () => {
 
   const cartTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const groupedMenuItems = menuItems.reduce((acc, item) => {
+  const filteredMenuItems = menuItems.filter(item => 
+    item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const groupedMenuItems = filteredMenuItems.reduce((acc, item) => {
     if (!acc[item.category]) {
       acc[item.category] = [];
     }
@@ -144,14 +152,19 @@ const Index = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
             Delicious Food
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-2xl drop-shadow-md">
+          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mb-8 drop-shadow-md">
             Order your favorite meals and get them delivered hot & fresh
           </p>
+          <SearchBar 
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search for dishes, categories..."
+          />
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
+      <main id="menu" className="container mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Menu Items */}
           <div className="lg:col-span-2 space-y-8">
