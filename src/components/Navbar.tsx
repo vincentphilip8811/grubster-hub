@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Utensils, User, ShoppingBag, LogOut, Home, MessageSquare, Menu } from "lucide-react";
+import { Utensils, User, ShoppingBag, LogOut, Home, MessageSquare, Menu, Phone, ChefHat } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { User as SupabaseUser } from "@supabase/supabase-js";
@@ -54,6 +54,18 @@ const Navbar = () => {
               <Button variant="ghost" className="gap-2">
                 <MessageSquare className="h-4 w-4" />
                 <span className="hidden md:inline">Feedback</span>
+              </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="ghost" className="gap-2">
+                <Phone className="h-4 w-4" />
+                <span className="hidden md:inline">Contact</span>
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button variant="ghost" className="gap-2">
+                <ChefHat className="h-4 w-4" />
+                <span className="hidden md:inline">About</span>
               </Button>
             </Link>
             

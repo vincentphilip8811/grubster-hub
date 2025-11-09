@@ -88,3 +88,11 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
